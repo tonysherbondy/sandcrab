@@ -12,6 +12,8 @@
 		BB81081519B52ADD00B362A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB81081319B52ADD00B362A5 /* Main.storyboard */; };
 		BB81081719B52ADD00B362A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB81081619B52ADD00B362A5 /* Images.xcassets */; };
 		BB81082319B52ADD00B362A5 /* SandCrabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB81082219B52ADD00B362A5 /* SandCrabTests.swift */; };
+		BB81082E19B5410100B362A5 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB81082C19B5410100B362A5 /* ChatCell.swift */; };
+		BB81082F19B5410100B362A5 /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB81082D19B5410100B362A5 /* ChatCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,8 @@
 		BB81081C19B52ADD00B362A5 /* SandCrabTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SandCrabTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB81082119B52ADD00B362A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB81082219B52ADD00B362A5 /* SandCrabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandCrabTests.swift; sourceTree = "<group>"; };
+		BB81082C19B5410100B362A5 /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		BB81082D19B5410100B362A5 /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,8 @@
 				BB81080F19B52ADD00B362A5 /* AppDelegate.swift */,
 				BB81081119B52ADD00B362A5 /* ViewController.swift */,
 				BB81081319B52ADD00B362A5 /* Main.storyboard */,
+				BB81082C19B5410100B362A5 /* ChatCell.swift */,
+				BB81082D19B5410100B362A5 /* ChatCell.xib */,
 				BB81081619B52ADD00B362A5 /* Images.xcassets */,
 				BB81080D19B52ADD00B362A5 /* Supporting Files */,
 			);
@@ -190,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB81081519B52ADD00B362A5 /* Main.storyboard in Resources */,
+				BB81082F19B5410100B362A5 /* ChatCell.xib in Resources */,
 				BB81081719B52ADD00B362A5 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,6 +217,7 @@
 			files = (
 				BB81081219B52ADD00B362A5 /* ViewController.swift in Sources */,
 				BB81081019B52ADD00B362A5 /* AppDelegate.swift in Sources */,
+				BB81082E19B5410100B362A5 /* ChatCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
