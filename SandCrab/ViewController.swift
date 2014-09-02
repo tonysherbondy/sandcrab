@@ -21,9 +21,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
                             
     @IBOutlet weak var workoutResultView: UIView!
-    @IBOutlet weak var leaderboardView: UIView!
+    @IBOutlet weak var leaderboardView: UITableView!
     @IBOutlet weak var resultBlobView: UIView!
     @IBOutlet weak var chatView: UITableView!
+    
+    let buddies : [[String: AnyObject]] = [
+        ["name": "Carl", "result":180],
+        ["name": "Nate", "result":300],
+        ["name": "Joey", "result":600],
+        ["name": "Nick", "result":630]
+    ]
+    let myInfo: [String: AnyObject] = ["name": "Anthony", "result":220]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +39,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.chatView.delegate = self
         self.chatView.dataSource = self
         
+        self.leaderboardView.delegate = self
+        self.leaderboardView.dataSource = self
+        
         let chatCellNib = UINib(nibName: "ChatCell", bundle: nil)
         self.chatView.registerNib(chatCellNib, forCellReuseIdentifier: "ChatCell")
+        let leaderboardCellNib = UINib(nibName: "LeaderboardCell", bundle: nil)
+        self.leaderboardView.registerNib(leaderboardCellNib, forCellReuseIdentifier: "LeaderboardCell")
         
         timelineUIState["resultBlobView"] = self.resultBlobView.frame
         timelineUIState["workoutResultView"] = self.workoutResultView.frame
@@ -102,17 +115,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        let cell : ChatCell = tableView.dequeueReusableCellWithIdentifier("ChatCell", forIndexPath: indexPath) as ChatCell
-        cell.chatLabel.text = "Great PR dude!!"
-        return cell
+        if tableView == self.leaderboardView {
+            let cell : LeaderboardCell = tableView.dequeueReusableCellWithIdentifier("LeaderboardCell", forIndexPath: indexPath) as LeaderboardCell
+            cell.buddyLabel.text = self.buddies[indexPath.row]["name"]! as String
+            return cell
+        } else {
+            let cell : ChatCell = tableView.dequeueReusableCellWithIdentifier("ChatCell", forIndexPath: indexPath) as ChatCell
+            cell.chatLabel.text = "Great PR dude!!"
+            return cell
+        }
     }
     
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        return 200
+        if tableView == self.leaderboardView {
+            return self.buddies.count
+        } else {
+            return 20
+        }
     }
     
     func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        return 100
+        if tableView == self.leaderboardView {
+            return 50
+        } else {
+            return 100
+        }
     }
     
  }

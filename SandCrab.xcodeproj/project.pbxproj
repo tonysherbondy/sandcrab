@@ -14,6 +14,8 @@
 		BB81082319B52ADD00B362A5 /* SandCrabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB81082219B52ADD00B362A5 /* SandCrabTests.swift */; };
 		BB81082E19B5410100B362A5 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB81082C19B5410100B362A5 /* ChatCell.swift */; };
 		BB81082F19B5410100B362A5 /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB81082D19B5410100B362A5 /* ChatCell.xib */; };
+		BB81083219B598B900B362A5 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB81083019B598B900B362A5 /* LeaderboardCell.swift */; };
+		BB81083319B598B900B362A5 /* LeaderboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB81083119B598B900B362A5 /* LeaderboardCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		BB81082219B52ADD00B362A5 /* SandCrabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandCrabTests.swift; sourceTree = "<group>"; };
 		BB81082C19B5410100B362A5 /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		BB81082D19B5410100B362A5 /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
+		BB81083019B598B900B362A5 /* LeaderboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
+		BB81083119B598B900B362A5 /* LeaderboardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeaderboardCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,8 @@
 				BB81080F19B52ADD00B362A5 /* AppDelegate.swift */,
 				BB81081119B52ADD00B362A5 /* ViewController.swift */,
 				BB81081319B52ADD00B362A5 /* Main.storyboard */,
+				BB81083019B598B900B362A5 /* LeaderboardCell.swift */,
+				BB81083119B598B900B362A5 /* LeaderboardCell.xib */,
 				BB81082C19B5410100B362A5 /* ChatCell.swift */,
 				BB81082D19B5410100B362A5 /* ChatCell.xib */,
 				BB81081619B52ADD00B362A5 /* Images.xcassets */,
@@ -196,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB81081519B52ADD00B362A5 /* Main.storyboard in Resources */,
+				BB81083319B598B900B362A5 /* LeaderboardCell.xib in Resources */,
 				BB81082F19B5410100B362A5 /* ChatCell.xib in Resources */,
 				BB81081719B52ADD00B362A5 /* Images.xcassets in Resources */,
 			);
@@ -216,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB81081219B52ADD00B362A5 /* ViewController.swift in Sources */,
+				BB81083219B598B900B362A5 /* LeaderboardCell.swift in Sources */,
 				BB81081019B52ADD00B362A5 /* AppDelegate.swift in Sources */,
 				BB81082E19B5410100B362A5 /* ChatCell.swift in Sources */,
 			);
