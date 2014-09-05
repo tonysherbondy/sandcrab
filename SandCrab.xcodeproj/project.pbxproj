@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB7350BE19BA5AD70073650F /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7350BD19BA5AD70073650F /* TimelineViewController.swift */; };
+		BB7350C119BA5BB40073650F /* TimelineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7350BF19BA5BB40073650F /* TimelineCell.swift */; };
+		BB7350C219BA5BB40073650F /* TimelineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7350C019BA5BB40073650F /* TimelineCell.xib */; };
 		BB81081019B52ADD00B362A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB81080F19B52ADD00B362A5 /* AppDelegate.swift */; };
 		BB81081219B52ADD00B362A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB81081119B52ADD00B362A5 /* ViewController.swift */; };
 		BB81081519B52ADD00B362A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB81081319B52ADD00B362A5 /* Main.storyboard */; };
@@ -29,6 +32,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB7350BD19BA5AD70073650F /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineViewController.swift; path = ../TimelineViewController.swift; sourceTree = "<group>"; };
+		BB7350BF19BA5BB40073650F /* TimelineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineCell.swift; sourceTree = "<group>"; };
+		BB7350C019BA5BB40073650F /* TimelineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineCell.xib; sourceTree = "<group>"; };
 		BB81080A19B52ADD00B362A5 /* SandCrab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SandCrab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB81080E19B52ADD00B362A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB81080F19B52ADD00B362A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +90,9 @@
 			isa = PBXGroup;
 			children = (
 				BB81080F19B52ADD00B362A5 /* AppDelegate.swift */,
+				BB7350BD19BA5AD70073650F /* TimelineViewController.swift */,
+				BB7350BF19BA5BB40073650F /* TimelineCell.swift */,
+				BB7350C019BA5BB40073650F /* TimelineCell.xib */,
 				BB81081119B52ADD00B362A5 /* ViewController.swift */,
 				BB81081319B52ADD00B362A5 /* Main.storyboard */,
 				BB81083019B598B900B362A5 /* LeaderboardCell.swift */,
@@ -203,6 +212,7 @@
 			files = (
 				BB81081519B52ADD00B362A5 /* Main.storyboard in Resources */,
 				BB81083319B598B900B362A5 /* LeaderboardCell.xib in Resources */,
+				BB7350C219BA5BB40073650F /* TimelineCell.xib in Resources */,
 				BB81082F19B5410100B362A5 /* ChatCell.xib in Resources */,
 				BB81081719B52ADD00B362A5 /* Images.xcassets in Resources */,
 			);
@@ -222,10 +232,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB7350C119BA5BB40073650F /* TimelineCell.swift in Sources */,
 				BB81081219B52ADD00B362A5 /* ViewController.swift in Sources */,
 				BB81083219B598B900B362A5 /* LeaderboardCell.swift in Sources */,
 				BB81081019B52ADD00B362A5 /* AppDelegate.swift in Sources */,
 				BB81082E19B5410100B362A5 /* ChatCell.swift in Sources */,
+				BB7350BE19BA5AD70073650F /* TimelineViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +423,7 @@
 				BB81082819B52ADD00B362A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BB81082919B52ADD00B362A5 /* Build configuration list for PBXNativeTarget "SandCrabTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +432,7 @@
 				BB81082B19B52ADD00B362A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
