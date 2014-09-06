@@ -8,12 +8,19 @@
 
 import UIKit
 
-class TimelineCell: UITableViewCell {
+protocol TimelineCellProtocol {
+    func expandRow(cell:UITableViewCell)
+    func collapseRow(cell:UITableViewCell)
+}
+
+class TimelineCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var workoutResultView: UIView!
     @IBOutlet weak var resultBlobView: UIView!
     @IBOutlet weak var leaderboardView: UITableView!
     @IBOutlet weak var chatView: UITableView!
+    
+    var delegate : TimelineCellProtocol?
     
     enum WorkoutResultState {
         case Timeline
@@ -37,6 +44,20 @@ class TimelineCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
+        self.selectionStyle = UITableViewCellSelectionStyle.None
+        
+        self.chatView.delegate = self
+        self.chatView.dataSource = self
+        
+        self.leaderboardView.delegate = self
+        self.leaderboardView.dataSource = self
+        
+        let chatCellNib = UINib(nibName: "ChatCell", bundle: nil)
+        self.chatView.registerNib(chatCellNib, forCellReuseIdentifier: "ChatCell")
+        let leaderboardCellNib = UINib(nibName: "LeaderboardCell", bundle: nil)
+        self.leaderboardView.registerNib(leaderboardCellNib, forCellReuseIdentifier: "LeaderboardCell")
+        
+        
         timelineUIState["resultBlobView"] = self.resultBlobView.frame
         timelineUIState["workoutResultView"] = self.workoutResultView.frame
         timelineUIState["chatView"] = self.chatView.frame
@@ -58,6 +79,8 @@ class TimelineCell: UITableViewCell {
     func transitionToTimelineState() {
         self.workoutResultState = .Timeline
         
+        self.delegate?.collapseRow(self)
+        
         UIView.animateWithDuration(1, animations: { () -> Void in
             self.workoutResultView.frame = self.timelineUIState["workoutResultView"]!
             self.resultBlobView.frame = self.timelineUIState["resultBlobView"]!
@@ -72,6 +95,8 @@ class TimelineCell: UITableViewCell {
         switch self.workoutResultState {
         case .Timeline :
             self.workoutResultState = .Leaderboard
+            self.delegate?.expandRow(self)
+            
             UIView.animateWithDuration(
                 1, animations: { () -> Void in
                     self.workoutResultView.frame = CGRectMake(0, 0, 320, self.frame.height)
@@ -79,7 +104,7 @@ class TimelineCell: UITableViewCell {
                     self.resultBlobView.center.x += self.leaderboardOffsetX
                     self.chatView.center.x += self.leaderboardOffsetX + 200
                     
-                    self.leaderboardView.frame = CGRectMake(0, 0, 200, self.frame.height)
+                    self.leaderboardView.frame = CGRectMake(0, 0, 200, UIScreen.mainScreen().bounds.height)
                     
             })
         case .Chat:
@@ -96,6 +121,8 @@ class TimelineCell: UITableViewCell {
         switch self.workoutResultState {
         case .Timeline:
             self.workoutResultState = .Chat
+            self.delegate?.expandRow(self)
+            
             UIView.animateWithDuration(
                 1, animations: { () -> Void in
                     self.workoutResultView.frame = CGRectMake(0, 0, 320, self.frame.height)
@@ -114,4 +141,33 @@ class TimelineCell: UITableViewCell {
             println("don't recognize this state")
         }
     }
+    
+    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+        if tableView == self.leaderboardView {
+            let cell : LeaderboardCell = tableView.dequeueReusableCellWithIdentifier("LeaderboardCell", forIndexPath: indexPath) as LeaderboardCell
+            cell.buddyLabel.text = self.buddies[indexPath.row]["name"]! as String
+            return cell
+        } else {
+            let cell : ChatCell = tableView.dequeueReusableCellWithIdentifier("ChatCell", forIndexPath: indexPath) as ChatCell
+            cell.chatLabel.text = "Great PR dude!!"
+            return cell
+        }
+    }
+    
+    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+        if tableView == self.leaderboardView {
+            return self.buddies.count
+        } else {
+            return 20
+        }
+    }
+    
+    func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        if tableView == self.leaderboardView {
+            return 50
+        } else {
+            return 100
+        }
+    }
+
 }

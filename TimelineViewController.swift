@@ -8,10 +8,11 @@
 
 import UIKit
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TimelineCellProtocol {
     
     @IBOutlet weak var timelineTableView: UITableView!
 
+    var expandedRow : Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         let cell = tableView.dequeueReusableCellWithIdentifier("TimelineCell", forIndexPath: indexPath) as TimelineCell
+        cell.delegate = self
+        cell.tag = indexPath.row
         return cell
     }
     
@@ -44,7 +47,37 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        if let expandedRow = self.expandedRow {
+            if (indexPath.row == expandedRow) {
+                return self.view.frame.height
+            }
+        }
         return 362
+    }
+    
+    func expandRow(cell:UITableViewCell) {
+        println("Expand row \(cell.tag)")
+        
+//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LeaderboardViewController") as LeaderboardViewController
+//        self.presentViewController(vc, animated: true) { () -> Void in
+//            // on complete
+//        }
+        
+    
+        self.expandedRow = cell.tag
+        let indexPath = NSIndexPath(forRow: cell.tag, inSection: 0)
+        //self.timelineTableView.reloadRowsAtIndexPaths([indexPath] as [AnyObject], withRowAnimation: UITableViewRowAnimation.Fade)
+
+//        self.timelineTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Top, animated:true)
+    
+    }
+    
+    func collapseRow(cell:UITableViewCell) {
+        println("Collapse row \(cell.tag)")
+        self.expandedRow = nil
+        
+        let indexPath = NSIndexPath(forRow: cell.tag, inSection: 0)
+        self.timelineTableView.reloadRowsAtIndexPaths([indexPath] as [AnyObject], withRowAnimation: UITableViewRowAnimation.Fade)
     }
 
 }
