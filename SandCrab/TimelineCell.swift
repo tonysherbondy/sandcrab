@@ -9,11 +9,11 @@
 import UIKit
 
 protocol TimelineCellProtocol {
-    func expandRow(cell:UITableViewCell)
-    func collapseRow(cell:UITableViewCell)
+    func expandRow(cell:UICollectionViewCell)
+    func collapseRow(cell:UICollectionViewCell)
 }
 
-class TimelineCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource {
+class TimelineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var workoutResultView: UIView!
     @IBOutlet weak var resultBlobView: UIView!
@@ -44,8 +44,6 @@ class TimelineCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
         super.awakeFromNib()
         // Initialization code
         
-        self.selectionStyle = UITableViewCellSelectionStyle.None
-        
         self.chatView.delegate = self
         self.chatView.dataSource = self
         
@@ -68,12 +66,7 @@ class TimelineCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: "onSwipeLeft:")
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.addGestureRecognizer(swipeLeft)
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
     }
     
     func transitionToTimelineState() {
@@ -99,7 +92,7 @@ class TimelineCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
             
             UIView.animateWithDuration(
                 1, animations: { () -> Void in
-                    self.workoutResultView.frame = CGRectMake(0, 0, 320, self.frame.height)
+                    self.workoutResultView.frame = CGRectMake(0, 0, 320, UIScreen.mainScreen().bounds.height)
                     
                     self.resultBlobView.center.x += self.leaderboardOffsetX
                     self.chatView.center.x += self.leaderboardOffsetX + 200
@@ -125,10 +118,10 @@ class TimelineCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
             
             UIView.animateWithDuration(
                 1, animations: { () -> Void in
-                    self.workoutResultView.frame = CGRectMake(0, 0, 320, self.frame.height)
+                    self.workoutResultView.frame = CGRectMake(0, 0, 320, UIScreen.mainScreen().bounds.height)
                     
                     self.resultBlobView.center.x -= self.leaderboardOffsetX
-                    self.chatView.frame = CGRectMake(100, 0, 220, self.frame.height)
+                    self.chatView.frame = CGRectMake(100, 0, 220, UIScreen.mainScreen().bounds.height)
                     
                     self.leaderboardView.center.x -= 200
                     
