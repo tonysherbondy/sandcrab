@@ -30,6 +30,15 @@
                             <view contentMode="scaleToFill" id="yR3-xk-4oN" userLabel="Result">
                                 <rect key="frame" x="81" y="47" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ltq-L2-Kqz">
+                                        <rect key="frame" x="8" y="29" width="65" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.9215686917" green="0.9215686917" blue="0.9215686917" alpha="1" colorSpace="deviceRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
@@ -45,6 +54,7 @@
                 <outlet property="chatView" destination="HSD-Hg-Kvn" id="O4J-u9-98j"/>
                 <outlet property="leaderboardView" destination="tBC-qF-3R3" id="Oxy-K0-xRo"/>
                 <outlet property="resultBlobView" destination="yR3-xk-4oN" id="eXA-DZ-qoD"/>
+                <outlet property="workoutNameLabel" destination="ltq-L2-Kqz" id="jRd-Qn-X4J"/>
                 <outlet property="workoutResultView" destination="2cJ-6G-ZrV" id="6vI-Jc-SDf"/>
             </connections>
             <point key="canvasLocation" x="185" y="319"/>

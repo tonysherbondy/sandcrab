@@ -10,7 +10,6 @@
 		BB7350BE19BA5AD70073650F /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7350BD19BA5AD70073650F /* TimelineViewController.swift */; };
 		BB7350C119BA5BB40073650F /* TimelineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7350BF19BA5BB40073650F /* TimelineCell.swift */; };
 		BB7350C219BA5BB40073650F /* TimelineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7350C019BA5BB40073650F /* TimelineCell.xib */; };
-		BB7350C419BA6C130073650F /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7350C319BA6C130073650F /* LeaderboardViewController.swift */; };
 		BB81081019B52ADD00B362A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB81080F19B52ADD00B362A5 /* AppDelegate.swift */; };
 		BB81081219B52ADD00B362A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB81081119B52ADD00B362A5 /* ViewController.swift */; };
 		BB81081519B52ADD00B362A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB81081319B52ADD00B362A5 /* Main.storyboard */; };
@@ -36,7 +35,6 @@
 		BB7350BD19BA5AD70073650F /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineViewController.swift; path = ../TimelineViewController.swift; sourceTree = "<group>"; };
 		BB7350BF19BA5BB40073650F /* TimelineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineCell.swift; sourceTree = "<group>"; };
 		BB7350C019BA5BB40073650F /* TimelineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineCell.xib; sourceTree = "<group>"; };
-		BB7350C319BA6C130073650F /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		BB81080A19B52ADD00B362A5 /* SandCrab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SandCrab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB81080E19B52ADD00B362A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB81080F19B52ADD00B362A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,7 +95,6 @@
 				BB7350C019BA5BB40073650F /* TimelineCell.xib */,
 				BB81081119B52ADD00B362A5 /* ViewController.swift */,
 				BB81081319B52ADD00B362A5 /* Main.storyboard */,
-				BB7350C319BA6C130073650F /* LeaderboardViewController.swift */,
 				BB81083019B598B900B362A5 /* LeaderboardCell.swift */,
 				BB81083119B598B900B362A5 /* LeaderboardCell.xib */,
 				BB81082C19B5410100B362A5 /* ChatCell.swift */,
@@ -235,7 +232,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB7350C419BA6C130073650F /* LeaderboardViewController.swift in Sources */,
 				BB7350C119BA5BB40073650F /* TimelineCell.swift in Sources */,
 				BB81081219B52ADD00B362A5 /* ViewController.swift in Sources */,
 				BB81083219B598B900B362A5 /* LeaderboardCell.swift in Sources */,

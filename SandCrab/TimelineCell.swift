@@ -19,6 +19,14 @@ class TimelineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var resultBlobView: UIView!
     @IBOutlet weak var leaderboardView: UITableView!
     @IBOutlet weak var chatView: UITableView!
+    @IBOutlet weak var workoutNameLabel: UILabel!
+    
+    var buddies : [Buddy]?
+    
+    func setWorkout(workout: Workout) {
+        workoutNameLabel.text = workout.name
+        buddies = workout.buddies
+    }
     
     var delegate : TimelineCellProtocol?
     
@@ -31,14 +39,6 @@ class TimelineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSo
     
     let leaderboardOffsetX : CGFloat = 100
     var timelineUIState : [String: CGRect] = ["resultBlobView": CGRectMake(0, 0, 0, 0)]
-    
-    let buddies : [[String: AnyObject]] = [
-        ["name": "Carl", "result":180],
-        ["name": "Nate", "result":300],
-        ["name": "Joey", "result":600],
-        ["name": "Nick", "result":630]
-    ]
-    let myInfo: [String: AnyObject] = ["name": "Anthony", "result":220]
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -138,7 +138,12 @@ class TimelineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSo
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         if tableView == self.leaderboardView {
             let cell : LeaderboardCell = tableView.dequeueReusableCellWithIdentifier("LeaderboardCell", forIndexPath: indexPath) as LeaderboardCell
-            cell.buddyLabel.text = self.buddies[indexPath.row]["name"]! as String
+            
+            if let buddy = buddies?[indexPath.row] {
+                cell.buddyLabel.text = buddy.name
+                cell.buddyProfileImageView.image = UIImage(named:buddy.name.lowercaseString)
+            }
+            
             return cell
         } else {
             let cell : ChatCell = tableView.dequeueReusableCellWithIdentifier("ChatCell", forIndexPath: indexPath) as ChatCell
@@ -149,7 +154,10 @@ class TimelineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSo
     
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         if tableView == self.leaderboardView {
-            return self.buddies.count
+            if let count = buddies?.count {
+                return count
+            }
+            return 0
         } else {
             return 20
         }

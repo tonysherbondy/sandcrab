@@ -12,6 +12,7 @@ class LeaderboardCell: UITableViewCell {
 
     @IBOutlet weak var buddyLabel: UILabel!
     @IBOutlet weak var buddyProfileImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
