@@ -23,22 +23,50 @@ let USER_STORE = [
     "joey" : User(id: "joey", name: "Joey", profileImgName: "joey")
 ]
 
-// Imagine these workouts will eventually be subclassed because we have different types
+// Is it a score or result?
+enum WorkoutScoreType {
+    case Time, Rounds, Weight
+}
+
+// Consider subclassing instead of typing
 struct WorkoutResult {
     var userID : String
+    // Should change result to value
     var result : Int
 }
 
 // Need a user store so that we can look up user based on ID
-
 struct Workout {
     var name : String
     var myResult: WorkoutResult
+    // Need to resolve where this type lives
+    var resultType : WorkoutScoreType
     var friendsResults : [WorkoutResult]
+    
     // Sort by workout, each workout result will need a type specifying how to sort it
     var sortedFriendsResults : [WorkoutResult] {
         get {
-            return friendsResults
+            switch resultType {
+            case .Time:
+                return friendsResults.sorted({ $0.result < $1.result })
+            case .Weight, .Rounds:
+                return friendsResults.sorted({ $0.result > $1.result })
+            }
+            
+        }
+    }
+    
+    func resultDescription(result: WorkoutResult) -> String {
+        switch resultType {
+        case .Rounds:
+            return "\(result.result) rounds"
+        case .Time:
+            return "\(result.result) seconds"
+        case .Weight:
+            return "\(result.result) lbs"
+        default:
+            println("Unkown workout result printed!!")
+            return "\(result.result) rounds"
         }
     }
 }
@@ -62,6 +90,7 @@ class TimelineViewController: UIViewController, UICollectionViewDelegateFlowLayo
     let workouts = [
         Workout(name: "Fran",
             myResult: WorkoutResult(userID: "tony", result: 250),
+            resultType: .Time,
             friendsResults: [
                 WorkoutResult(userID: "carl", result: 300),
                 WorkoutResult(userID: "nick", result: 400),
@@ -69,6 +98,7 @@ class TimelineViewController: UIViewController, UICollectionViewDelegateFlowLayo
             ]),
         Workout(name: "Cindy",
             myResult: WorkoutResult(userID: "tony", result: 20),
+            resultType: .Rounds,
             friendsResults: [
                 WorkoutResult(userID: "joey", result: 17),
                 WorkoutResult(userID: "nick", result: 15),
@@ -76,6 +106,7 @@ class TimelineViewController: UIViewController, UICollectionViewDelegateFlowLayo
             ]),
         Workout(name: "Karen",
             myResult: WorkoutResult(userID: "tony", result: 600),
+            resultType: .Time,
             friendsResults: [
                 WorkoutResult(userID: "carl", result: 500),
                 WorkoutResult(userID: "nick", result: 430),

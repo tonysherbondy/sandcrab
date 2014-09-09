@@ -22,10 +22,12 @@ class TimelineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var workoutNameLabel: UILabel!
     
     var friendsResults : [WorkoutResult]?
+    var workout : Workout?
     
     func setWorkout(workout: Workout) {
+        self.workout = workout
         workoutNameLabel.text = workout.name
-        friendsResults = workout.friendsResults
+        friendsResults = workout.sortedFriendsResults
     }
     
     var delegate : TimelineCellProtocol?
@@ -141,8 +143,8 @@ class TimelineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSo
             
             if let result = (friendsResults?[indexPath.row]) {
                 let user = USER_STORE[result.userID]
-                cell.buddyLabel.text = user?.name
-                cell.buddyProfileImageView.image = UIImage(named: user?.profileImgName)
+                cell.buddyLabel.text = "\(user!.name) - \(workout!.resultDescription(result))"
+                cell.buddyProfileImageView.image = UIImage(named: user!.profileImgName)
             }
             
             return cell
