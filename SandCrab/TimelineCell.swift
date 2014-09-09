@@ -21,11 +21,11 @@ class TimelineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var chatView: UITableView!
     @IBOutlet weak var workoutNameLabel: UILabel!
     
-    var buddies : [Buddy]?
+    var friendsResults : [WorkoutResult]?
     
     func setWorkout(workout: Workout) {
         workoutNameLabel.text = workout.name
-        buddies = workout.buddies
+        friendsResults = workout.friendsResults
     }
     
     var delegate : TimelineCellProtocol?
@@ -139,9 +139,10 @@ class TimelineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSo
         if tableView == self.leaderboardView {
             let cell : LeaderboardCell = tableView.dequeueReusableCellWithIdentifier("LeaderboardCell", forIndexPath: indexPath) as LeaderboardCell
             
-            if let buddy = buddies?[indexPath.row] {
-                cell.buddyLabel.text = buddy.name
-                cell.buddyProfileImageView.image = UIImage(named:buddy.name.lowercaseString)
+            if let result = (friendsResults?[indexPath.row]) {
+                let user = USER_STORE[result.userID]
+                cell.buddyLabel.text = user?.name
+                cell.buddyProfileImageView.image = UIImage(named: user?.profileImgName)
             }
             
             return cell
@@ -154,7 +155,7 @@ class TimelineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSo
     
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         if tableView == self.leaderboardView {
-            if let count = buddies?.count {
+            if let count = friendsResults?.count {
                 return count
             }
             return 0
