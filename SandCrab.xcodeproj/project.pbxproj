@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB03B0E419C6495B00365906 /* tony.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BB03B0E019C6495B00365906 /* tony.jpg */; };
+		BB03B0E519C6495B00365906 /* joey.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BB03B0E119C6495B00365906 /* joey.jpg */; };
+		BB03B0E619C6495B00365906 /* carl.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BB03B0E219C6495B00365906 /* carl.jpg */; };
+		BB03B0E719C6495B00365906 /* nick.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BB03B0E319C6495B00365906 /* nick.jpg */; };
 		BB7350BE19BA5AD70073650F /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7350BD19BA5AD70073650F /* TimelineViewController.swift */; };
 		BB7350C119BA5BB40073650F /* TimelineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7350BF19BA5BB40073650F /* TimelineCell.swift */; };
 		BB7350C219BA5BB40073650F /* TimelineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7350C019BA5BB40073650F /* TimelineCell.xib */; };
@@ -32,6 +36,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB03B0E019C6495B00365906 /* tony.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tony.jpg; sourceTree = "<group>"; };
+		BB03B0E119C6495B00365906 /* joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = joey.jpg; sourceTree = "<group>"; };
+		BB03B0E219C6495B00365906 /* carl.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = carl.jpg; sourceTree = "<group>"; };
+		BB03B0E319C6495B00365906 /* nick.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nick.jpg; sourceTree = "<group>"; };
 		BB7350BD19BA5AD70073650F /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineViewController.swift; path = ../TimelineViewController.swift; sourceTree = "<group>"; };
 		BB7350BF19BA5BB40073650F /* TimelineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineCell.swift; sourceTree = "<group>"; };
 		BB7350C019BA5BB40073650F /* TimelineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineCell.xib; sourceTree = "<group>"; };
@@ -100,6 +108,10 @@
 				BB81082C19B5410100B362A5 /* ChatCell.swift */,
 				BB81082D19B5410100B362A5 /* ChatCell.xib */,
 				BB81081619B52ADD00B362A5 /* Images.xcassets */,
+				BB03B0E019C6495B00365906 /* tony.jpg */,
+				BB03B0E119C6495B00365906 /* joey.jpg */,
+				BB03B0E219C6495B00365906 /* carl.jpg */,
+				BB03B0E319C6495B00365906 /* nick.jpg */,
 				BB81080D19B52ADD00B362A5 /* Supporting Files */,
 			);
 			path = SandCrab;
@@ -211,9 +223,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB81081519B52ADD00B362A5 /* Main.storyboard in Resources */,
+				BB03B0E619C6495B00365906 /* carl.jpg in Resources */,
+				BB03B0E419C6495B00365906 /* tony.jpg in Resources */,
 				BB81083319B598B900B362A5 /* LeaderboardCell.xib in Resources */,
+				BB03B0E719C6495B00365906 /* nick.jpg in Resources */,
 				BB7350C219BA5BB40073650F /* TimelineCell.xib in Resources */,
 				BB81082F19B5410100B362A5 /* ChatCell.xib in Resources */,
+				BB03B0E519C6495B00365906 /* joey.jpg in Resources */,
 				BB81081719B52ADD00B362A5 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,6 +370,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SandCrab/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -365,6 +382,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SandCrab/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

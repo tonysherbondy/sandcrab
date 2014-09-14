@@ -137,7 +137,7 @@ class TimelineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSo
         }
     }
     
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if tableView == self.leaderboardView {
             let cell : LeaderboardCell = tableView.dequeueReusableCellWithIdentifier("LeaderboardCell", forIndexPath: indexPath) as LeaderboardCell
             
@@ -155,7 +155,7 @@ class TimelineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSo
         }
     }
     
-    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == self.leaderboardView {
             if let count = friendsResults?.count {
                 return count
@@ -166,7 +166,7 @@ class TimelineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSo
         }
     }
     
-    func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if tableView == self.leaderboardView {
             return 50
         } else {
