@@ -21,7 +21,7 @@ class TimelineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var chatView: UITableView!
     @IBOutlet weak var workoutNameLabel: UILabel!
     
-    var friendsResults : [WorkoutResult]?
+    var friendsResults : [AthleteResult]?
     var workout : Workout?
     
     func setWorkout(workout: Workout) {
@@ -142,9 +142,11 @@ class TimelineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSo
             let cell : LeaderboardCell = tableView.dequeueReusableCellWithIdentifier("LeaderboardCell", forIndexPath: indexPath) as LeaderboardCell
             
             if let result = (friendsResults?[indexPath.row]) {
-                let user = USER_STORE[result.userID]
-                cell.buddyLabel.text = "\(user!.name) - \(workout!.resultDescription(result))"
-                cell.buddyProfileImageView.image = UIImage(named: user!.profileImgName)
+                if let user = USER_STORE[result.userID] {
+                    cell.buddyLabel.text = "\(user.name) - \(result.score.scoreDescription())"
+                    cell.buddyProfileImageView.image = UIImage(named: user.profileImgName)
+
+                }
             }
             
             return cell

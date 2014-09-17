@@ -23,6 +23,7 @@
 		BB81082F19B5410100B362A5 /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB81082D19B5410100B362A5 /* ChatCell.xib */; };
 		BB81083219B598B900B362A5 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB81083019B598B900B362A5 /* LeaderboardCell.swift */; };
 		BB81083319B598B900B362A5 /* LeaderboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB81083119B598B900B362A5 /* LeaderboardCell.xib */; };
+		BBAFE9DA19C918E0007AA7AD /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFE9D919C918E0007AA7AD /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		BB81082D19B5410100B362A5 /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
 		BB81083019B598B900B362A5 /* LeaderboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
 		BB81083119B598B900B362A5 /* LeaderboardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeaderboardCell.xib; sourceTree = "<group>"; };
+		BBAFE9D919C918E0007AA7AD /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				BB81080F19B52ADD00B362A5 /* AppDelegate.swift */,
 				BB7350BD19BA5AD70073650F /* TimelineViewController.swift */,
+				BBAFE9D919C918E0007AA7AD /* Models.swift */,
 				BB7350BF19BA5BB40073650F /* TimelineCell.swift */,
 				BB7350C019BA5BB40073650F /* TimelineCell.xib */,
 				BB81081119B52ADD00B362A5 /* ViewController.swift */,
@@ -254,6 +257,7 @@
 				BB81081019B52ADD00B362A5 /* AppDelegate.swift in Sources */,
 				BB81082E19B5410100B362A5 /* ChatCell.swift in Sources */,
 				BB7350BE19BA5AD70073650F /* TimelineViewController.swift in Sources */,
+				BBAFE9DA19C918E0007AA7AD /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
