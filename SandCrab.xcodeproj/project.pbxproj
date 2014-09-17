@@ -24,6 +24,7 @@
 		BB81083219B598B900B362A5 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB81083019B598B900B362A5 /* LeaderboardCell.swift */; };
 		BB81083319B598B900B362A5 /* LeaderboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB81083119B598B900B362A5 /* LeaderboardCell.xib */; };
 		BBAFE9DA19C918E0007AA7AD /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFE9D919C918E0007AA7AD /* Models.swift */; };
+		BBAFE9DC19C92309007AA7AD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFE9DB19C92309007AA7AD /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		BB81083019B598B900B362A5 /* LeaderboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
 		BB81083119B598B900B362A5 /* LeaderboardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeaderboardCell.xib; sourceTree = "<group>"; };
 		BBAFE9D919C918E0007AA7AD /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		BBAFE9DB19C92309007AA7AD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				BB7350C019BA5BB40073650F /* TimelineCell.xib */,
 				BB81081119B52ADD00B362A5 /* ViewController.swift */,
 				BB81081319B52ADD00B362A5 /* Main.storyboard */,
+				BBAFE9DB19C92309007AA7AD /* LoginViewController.swift */,
 				BB81083019B598B900B362A5 /* LeaderboardCell.swift */,
 				BB81083119B598B900B362A5 /* LeaderboardCell.xib */,
 				BB81082C19B5410100B362A5 /* ChatCell.swift */,
@@ -255,6 +258,7 @@
 				BB81081219B52ADD00B362A5 /* ViewController.swift in Sources */,
 				BB81083219B598B900B362A5 /* LeaderboardCell.swift in Sources */,
 				BB81081019B52ADD00B362A5 /* AppDelegate.swift in Sources */,
+				BBAFE9DC19C92309007AA7AD /* LoginViewController.swift in Sources */,
 				BB81082E19B5410100B362A5 /* ChatCell.swift in Sources */,
 				BB7350BE19BA5AD70073650F /* TimelineViewController.swift in Sources */,
 				BBAFE9DA19C918E0007AA7AD /* Models.swift in Sources */,
@@ -374,7 +378,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SandCrab/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -386,7 +390,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SandCrab/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
