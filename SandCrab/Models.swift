@@ -121,6 +121,7 @@ let WORKOUT_STORE = [
         athleteResults: [
             AthleteResult(userID: "tony", score: WorkoutScore(type: .Time, value: 250)),
             AthleteResult(userID: "carl", score: WorkoutScore(type: .Time, value: 300)),
+            AthleteResult(userID: "nate", score: WorkoutScore(type: .Time, value: 350)),
             AthleteResult(userID: "nick", score: WorkoutScore(type: .Time, value: 400)),
             AthleteResult(userID: "joey", score: WorkoutScore(type: .Time, value: 500))
             
@@ -134,6 +135,7 @@ let WORKOUT_STORE = [
         scoreTemplate: WorkoutScoreType.Rounds,
         athleteResults: [
             AthleteResult(userID: "tony", score: WorkoutScore(type: .Rounds, value: 20)),
+            AthleteResult(userID: "nate", score: WorkoutScore(type: .Rounds, value: 20)),
             AthleteResult(userID: "carl", score: WorkoutScore(type: .Rounds, value: 25)),
             AthleteResult(userID: "nick", score: WorkoutScore(type: .Rounds, value: 15)),
             AthleteResult(userID: "joey", score: WorkoutScore(type: .Rounds, value: 17))
@@ -150,6 +152,7 @@ let WORKOUT_STORE = [
             AthleteResult(userID: "tony", score: WorkoutScore(type: .Time, value: 600)),
             AthleteResult(userID: "carl", score: WorkoutScore(type: .Time, value: 500)),
             AthleteResult(userID: "nick", score: WorkoutScore(type: .Time, value: 430)),
+            AthleteResult(userID: "nate", score: WorkoutScore(type: .Time, value: 300)),
             AthleteResult(userID: "joey", score: WorkoutScore(type: .Time, value: 470))
             
         ])
@@ -163,7 +166,7 @@ let GROUP_STORE = [
 
 // Global database of users
 let USER_STORE = [
-    "nate" : User(id: "nate", name: "Nate", profileImgName: "joey", groupIDs: ["sfcf"]),
+    "nate" : User(id: "nate", name: "Nate", profileImgName: "nate", groupIDs: ["sfcf"]),
     "tony" : User(id: "tony", name: "Tony", profileImgName: "tony", groupIDs: ["sfcf"]),
     "carl" : User(id: "carl", name: "Carl", profileImgName: "carl", groupIDs: ["sfcf"]),
     "nick" : User(id: "nick", name: "Nick", profileImgName: "nick", groupIDs: ["sfcf"]),
