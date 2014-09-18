@@ -11,7 +11,9 @@ import UIKit
 // Let's play with firebase
 
 // Create a reference to a Firebase location
-var FIREBASE_USERS_REF = Firebase(url: "https://amber-inferno-424.firebaseio.com/users")
+let FIREBASE_REF =  Firebase(url: "https://amber-inferno-424.firebaseio.com/")
+let FIREBASE_USERS_REF = FIREBASE_REF.childByAppendingPath("users")
+let FIREBASE_WORKOUT_REF = FIREBASE_REF.childByAppendingPath("workouts")
 
 // Groups can create workouts
 struct Group {
@@ -70,8 +72,8 @@ class User {
 }
 
 // Ways to score a workout
-enum WorkoutScoreType {
-    case Time, Rounds, Weight
+enum WorkoutScoreType : Int {
+    case Time = 1, Rounds = 2, Weight = 3
 }
 
 // Workout score is a type and value
@@ -121,13 +123,12 @@ struct ChatMessage {
 }
 
 // Workout to perform
-struct Workout {
+class Workout {
     var id : String
     var name : String
     var description: String
     // Created the workout
     var groupID: String
-    var chatMessages: [ChatMessage]
     // Score template tells us how to score workout and is setup when we create workout
     var scoreTemplate : WorkoutScoreType
     // Results for each athlete
@@ -153,60 +154,106 @@ struct Workout {
             return friendsResults.sorted(friendsResults[0].comparator())
         }
     }
+    
+    init(dictionary : [String : AnyObject]) {
+        id = dictionary["id"] as NSString
+        name = dictionary["name"] as NSString
+        description = dictionary["description"] as NSString
+        groupID = dictionary["groupID"] as NSString
+        
+        let scoreTemplateValue = dictionary["scoreTemplate"] as NSNumber
+        scoreTemplate = WorkoutScoreType.fromRaw(scoreTemplateValue)!
+        
+        athleteResults = []
+    }
+    
+    
+    class func saveFirebaseWorkout() {
+        var workoutRef = FIREBASE_WORKOUT_REF.childByAutoId()
+        var workout : [String : AnyObject] = [
+                "name": "SFCF 2014.09.11",
+                "description": "Fran",
+                "groupID": "sfcf",
+                "scoreTemplate": WorkoutScoreType.Time.toRaw()
+            ]
+
+        
+        workoutRef.setValue(workout)
+        
+        workout["id"] = workoutRef.name
+        
+        println("saved workout \(workout)")
+    }
+    
+    class func observeWorkouts() {
+        FIREBASE_WORKOUT_REF.observeEventType(.Value, withBlock: { snapshot in
+            println("workouts data: \(snapshot.value)")
+            for data in snapshot.children.allObjects {
+                if let snap = data as? FDataSnapshot {
+                    if var workoutDict = snap.value as? [String : AnyObject] {
+                        workoutDict["id"] = snap.name
+                        let workout = Workout(dictionary: workoutDict)
+                        
+                        println("workout retrieved: \(workout)")
+                    }
+                }
+            }
+        })
+    }
+
+    
+    
 }
 
-let WORKOUT_STORE = [
-    Workout(
-        id:"SFCF.2014.09.11",
-        name: "SFCF 2014.09.11",
-        description: "Fran",
-        groupID: "sfcf",
-        chatMessages: [],
-        scoreTemplate: WorkoutScoreType.Time,
-        athleteResults: [
-            AthleteResult(userID: "tony", score: WorkoutScore(type: .Time, value: 250)),
-            AthleteResult(userID: "carl", score: WorkoutScore(type: .Time, value: 300)),
-            AthleteResult(userID: "nate", score: WorkoutScore(type: .Time, value: 350)),
-            AthleteResult(userID: "nick", score: WorkoutScore(type: .Time, value: 400)),
-            AthleteResult(userID: "joey", score: WorkoutScore(type: .Time, value: 500))
-            
-        ]),
-    Workout(
-        id:"SFCF.2014.09.12",
-        name: "SFCF 2014.09.12",
-        description: "Cindy",
-        groupID: "sfcf",
-        chatMessages: [],
-        scoreTemplate: WorkoutScoreType.Rounds,
-        athleteResults: [
-            AthleteResult(userID: "tony", score: WorkoutScore(type: .Rounds, value: 20)),
-            AthleteResult(userID: "nate", score: WorkoutScore(type: .Rounds, value: 20)),
-            AthleteResult(userID: "carl", score: WorkoutScore(type: .Rounds, value: 25)),
-            AthleteResult(userID: "nick", score: WorkoutScore(type: .Rounds, value: 15)),
-            AthleteResult(userID: "joey", score: WorkoutScore(type: .Rounds, value: 17))
-            
-        ]),
-    Workout(
-        id:"SFCF.2014.09.12",
-        name: "SFCF 2014.09.12",
-        description: "Karen",
-        groupID: "sfcf",
-        chatMessages: [],
-        scoreTemplate: WorkoutScoreType.Time,
-        athleteResults: [
-            AthleteResult(userID: "tony", score: WorkoutScore(type: .Time, value: 600)),
-            AthleteResult(userID: "carl", score: WorkoutScore(type: .Time, value: 500)),
-            AthleteResult(userID: "nick", score: WorkoutScore(type: .Time, value: 430)),
-            AthleteResult(userID: "nate", score: WorkoutScore(type: .Time, value: 300)),
-            AthleteResult(userID: "joey", score: WorkoutScore(type: .Time, value: 470))
-            
-        ])
-    
-]
-
-let workoutIDs = WORKOUT_STORE.map({ $0.id })
+//let WORKOUT_STORE = [
+//    Workout(
+//        id:"SFCF.2014.09.11",
+//        name: "SFCF 2014.09.11",
+//        description: "Fran",
+//        groupID: "sfcf",
+//        scoreTemplate: WorkoutScoreType.Time,
+//        athleteResults: [
+//            AthleteResult(userID: "tony", score: WorkoutScore(type: .Time, value: 250)),
+//            AthleteResult(userID: "carl", score: WorkoutScore(type: .Time, value: 300)),
+//            AthleteResult(userID: "nate", score: WorkoutScore(type: .Time, value: 350)),
+//            AthleteResult(userID: "nick", score: WorkoutScore(type: .Time, value: 400)),
+//            AthleteResult(userID: "joey", score: WorkoutScore(type: .Time, value: 500))
+//            
+//        ]),
+//    Workout(
+//        id:"SFCF.2014.09.12",
+//        name: "SFCF 2014.09.12",
+//        description: "Cindy",
+//        groupID: "sfcf",
+//        scoreTemplate: WorkoutScoreType.Rounds,
+//        athleteResults: [
+//            AthleteResult(userID: "tony", score: WorkoutScore(type: .Rounds, value: 20)),
+//            AthleteResult(userID: "nate", score: WorkoutScore(type: .Rounds, value: 20)),
+//            AthleteResult(userID: "carl", score: WorkoutScore(type: .Rounds, value: 25)),
+//            AthleteResult(userID: "nick", score: WorkoutScore(type: .Rounds, value: 15)),
+//            AthleteResult(userID: "joey", score: WorkoutScore(type: .Rounds, value: 17))
+//            
+//        ]),
+//    Workout(
+//        id:"SFCF.2014.09.12",
+//        name: "SFCF 2014.09.12",
+//        description: "Karen",
+//        groupID: "sfcf",
+//        scoreTemplate: WorkoutScoreType.Time,
+//        athleteResults: [
+//            AthleteResult(userID: "tony", score: WorkoutScore(type: .Time, value: 600)),
+//            AthleteResult(userID: "carl", score: WorkoutScore(type: .Time, value: 500)),
+//            AthleteResult(userID: "nick", score: WorkoutScore(type: .Time, value: 430)),
+//            AthleteResult(userID: "nate", score: WorkoutScore(type: .Time, value: 300)),
+//            AthleteResult(userID: "joey", score: WorkoutScore(type: .Time, value: 470))
+//            
+//        ])
+//    
+//]
+//
+//let workoutIDs = WORKOUT_STORE.map({ $0.id })
 let GROUP_STORE = [
-    "sfcf": Group(name: "San Francisco Crossfit", id: "sfcf", location: "San Francisco", workoutIDs: workoutIDs)
+    "sfcf": Group(name: "San Francisco Crossfit", id: "sfcf", location: "San Francisco", workoutIDs: [])
 ]
 
 // Global database of users

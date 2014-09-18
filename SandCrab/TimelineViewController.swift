@@ -13,13 +13,16 @@ class TimelineViewController: UIViewController, UICollectionViewDelegateFlowLayo
     @IBOutlet weak var collectionView: UICollectionView!
     
     var expandedRow : Int?
-    let workouts = WORKOUT_STORE
+    let workouts = [Workout]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         User.observeUsers()
-        User.saveFirebaseUser()
+        //User.saveFirebaseUser()
+        
+        Workout.observeWorkouts()
+        Workout.saveFirebaseWorkout()
 
         // Do any additional setup after loading the view.
         self.collectionView.dataSource = self
