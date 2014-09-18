@@ -8,6 +8,11 @@
 
 import UIKit
 
+// Let's play with firebase
+
+// Create a reference to a Firebase location
+var FIREBASE_USERS_REF = Firebase(url: "https://amber-inferno-424.firebaseio.com/users")
+
 // Groups can create workouts
 struct Group {
     var name: String
@@ -17,11 +22,51 @@ struct Group {
 }
 
 // Users can belong to multiple groups and perform workouts
-struct User {
+class User {
     var id : String
-    var name : String
+    var username : String
+    var fullName : String
     var profileImgName : String
-    var groupIDs : [String]
+    var groupIDs : [String]?
+    
+    init(dictionary : [String : AnyObject]) {
+        id = dictionary["id"] as NSString
+        username = dictionary["username"] as NSString
+        fullName = dictionary["fullName"] as NSString
+        profileImgName = dictionary["profileImgUrl"] as NSString
+        if let groups = dictionary["groupIDs"] as? NSArray {
+            groupIDs = groups as? [String]
+        }
+        println("user = \(self.fullName), \(groupIDs!)")
+    }
+    
+    
+    class func saveFirebaseUser() {
+        var userRef = FIREBASE_USERS_REF.childByAutoId()
+        var user = ["username" : "tony", "fullName": "Tony Sherbondy", "profileImgUrl" : "tony"]
+        
+        userRef.setValue(user)
+        
+        let userGroupsRef = userRef.childByAppendingPath("groupIDs")
+        userGroupsRef.setValue(["sfcf","flagship"])
+        
+        user["id"] = userRef.name
+        println("saved user \(user)")
+    }
+    
+    class func observeUsers() {
+        FIREBASE_USERS_REF.observeEventType(.Value, withBlock: { snapshot in
+            println("users data: \(snapshot.value)")
+            for data in snapshot.children.allObjects {
+                if let snap = data as? FDataSnapshot {
+                    if var userDict = snap.value as? [String : AnyObject] {
+                        userDict["id"] = snap.name
+                        let user = User(dictionary: userDict)
+                    }
+                }
+            }
+        })
+    }
 }
 
 // Ways to score a workout
@@ -165,13 +210,36 @@ let GROUP_STORE = [
 ]
 
 // Global database of users
-let USER_STORE = [
-    "nate" : User(id: "nate", name: "Nate", profileImgName: "nate", groupIDs: ["sfcf"]),
-    "tony" : User(id: "tony", name: "Tony", profileImgName: "tony", groupIDs: ["sfcf"]),
-    "carl" : User(id: "carl", name: "Carl", profileImgName: "carl", groupIDs: ["sfcf"]),
-    "nick" : User(id: "nick", name: "Nick", profileImgName: "nick", groupIDs: ["sfcf"]),
-    "joey" : User(id: "joey", name: "Joey", profileImgName: "joey", groupIDs: ["sfcf"])
-]
+//let USER_STORE = [
+//    "nate" : User(id: "nate", name: "Nate", profileImgName: "nate", groupIDs: ["sfcf"]),
+//    "tony" : User(id: "tony", name: "Tony", profileImgName: "tony", groupIDs: ["sfcf"]),
+//    "carl" : User(id: "carl", name: "Carl", profileImgName: "carl", groupIDs: ["sfcf"]),
+//    "nick" : User(id: "nick", name: "Nick", profileImgName: "nick", groupIDs: ["sfcf"]),
+//    "joey" : User(id: "joey", name: "Joey", profileImgName: "joey", groupIDs: ["sfcf"])
+//]
+let USER_STORE = [String : User]()
 
 // TODO: This should be a proper singleton
 var LOGGED_IN_USER = USER_STORE["carl"]
+
+//func getFirebaseUsers() {
+//    // Get a reference to our posts
+//    var usersRef = FIREBASE_USERS_REF
+//    
+//    // Attach a closure to read the data at our posts reference
+//    usersRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+//        for child in snapshot.children.allObjects {
+//            if let snap = child as? FDataSnapshot {
+//                let id = snap.value["id"] as String
+//                let name = snap.value["name"] as String
+//                let imageUrl = snap.value["profileImgName"] as String
+//                println("id: \(id)")
+//                println("name: \(name)")
+//                println("imageUrl: \(imageUrl)")
+//            }
+//        }
+//        }, withCancelBlock: { error in
+//            println(error.description)
+//    })
+//}
+

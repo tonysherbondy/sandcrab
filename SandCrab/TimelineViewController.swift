@@ -17,6 +17,9 @@ class TimelineViewController: UIViewController, UICollectionViewDelegateFlowLayo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        User.observeUsers()
+        User.saveFirebaseUser()
 
         // Do any additional setup after loading the view.
         self.collectionView.dataSource = self

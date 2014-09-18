@@ -1,0 +1,42 @@
+{
+  "tony": {
+    "id":"tony",
+    "name":"Tony",
+    "profileImgName":"tony",
+    "groups":{
+      "sfcf":true
+    }
+  },
+  "nate": {
+    "id":"nate",
+    "name":"Nate",
+    "profileImgName":"nate",
+    "groups":{
+      "sfcf":true
+    }
+  },
+  "carl": {
+    "id":"carl",
+    "name":"Carl",
+    "profileImgName":"carl",
+    "groups":{
+      "sfcf":true
+    }
+  },
+  "nick": {
+    "id":"nick",
+    "name":"Nick",
+    "profileImgName":"nick",
+    "groups":{
+      "sfcf":true
+    }
+  },
+  "joey": {
+    "id":"joey",
+    "name":"Joey",
+    "profileImgName":"joey",
+    "groups":{
+      "sfcf":true
+    }
+  }
+}

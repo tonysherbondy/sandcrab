@@ -143,7 +143,7 @@ class TimelineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSo
             
             if let result = (friendsResults?[indexPath.row]) {
                 if let user = USER_STORE[result.userID] {
-                    cell.buddyLabel.text = "\(user.name) - \(result.score.scoreDescription())"
+                    cell.buddyLabel.text = "\(user.fullName) - \(result.score.scoreDescription())"
                     cell.buddyProfileImageView.image = UIImage(named: user.profileImgName)
 
                 }
