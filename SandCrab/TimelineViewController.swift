@@ -15,6 +15,16 @@ class TimelineViewController: UIViewController, UICollectionViewDelegateFlowLayo
     var expandedRow : Int?
     let workouts = [Workout]()
     
+    @IBAction func onAddWorkoutButton(sender: UIButton) {
+        var workout : [String : AnyObject] = [
+            "name" : "SFCF 12.09.2014",
+            "description" : "Fran",
+            "groupID" : "sfcf",
+            "scoreTemplate" : WorkoutScoreType.Time.toRaw()
+        ]
+        Workout.saveFirebaseWorkout(workout)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,7 +32,7 @@ class TimelineViewController: UIViewController, UICollectionViewDelegateFlowLayo
         //User.saveFirebaseUser()
         
         Workout.observeWorkouts()
-        Workout.saveFirebaseWorkout()
+//        Workout.saveFirebaseWorkout()
 
         // Do any additional setup after loading the view.
         self.collectionView.dataSource = self

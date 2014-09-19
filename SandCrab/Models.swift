@@ -25,11 +25,13 @@ struct Group {
 
 // Users can belong to multiple groups and perform workouts
 class User {
-    var id : String
-    var username : String
-    var fullName : String
-    var profileImgName : String
+    var id = ""
+    var username : String = ""
+    var fullName : String = ""
+    var profileImgName : String = ""
     var groupIDs : [String]?
+    
+    init() {}
     
     init(dictionary : [String : AnyObject]) {
         id = dictionary["id"] as NSString
@@ -42,6 +44,22 @@ class User {
         println("user = \(self.fullName), \(groupIDs!)")
     }
     
+    private struct Singleton {
+        static var instance = User()
+    }
+    
+    class var loggedInUser : User {
+        get {
+            return Singleton.instance
+        }
+        set {
+            Singleton.instance = newValue
+        }
+    }
+    
+    class var allUsers : [String : User] {
+        return [String : User]()
+    }
     
     class func saveFirebaseUser() {
         var userRef = FIREBASE_USERS_REF.childByAutoId()
@@ -73,7 +91,7 @@ class User {
 
 // Ways to score a workout
 enum WorkoutScoreType : Int {
-    case Time = 1, Rounds = 2, Weight = 3
+    case Time = 0, Rounds = 1, Weight = 2
 }
 
 // Workout score is a type and value
@@ -147,7 +165,7 @@ class Workout {
     // Removes the logged in user from the list
     var sortedFriendsResults : [AthleteResult] {
         get {
-            let friendsResults = athleteResults.filter({ $0.userID != LOGGED_IN_USER?.id })
+            let friendsResults = athleteResults.filter({ $0.userID != User.loggedInUser.id })
             if friendsResults.count == 0 {
                 return friendsResults
             }
@@ -168,21 +186,12 @@ class Workout {
     }
     
     
-    class func saveFirebaseWorkout() {
+    class func saveFirebaseWorkout(workout: [String : AnyObject]) {
         var workoutRef = FIREBASE_WORKOUT_REF.childByAutoId()
-        var workout : [String : AnyObject] = [
-                "name": "SFCF 2014.09.11",
-                "description": "Fran",
-                "groupID": "sfcf",
-                "scoreTemplate": WorkoutScoreType.Time.toRaw()
-            ]
-
-        
-        workoutRef.setValue(workout)
-        
-        workout["id"] = workoutRef.name
-        
-        println("saved workout \(workout)")
+        var mutableWorkout = workout
+        workoutRef.setValue(mutableWorkout)
+        mutableWorkout["id"] = workoutRef.name
+        println("saved workout!")
     }
     
     class func observeWorkouts() {
@@ -255,38 +264,3 @@ class Workout {
 let GROUP_STORE = [
     "sfcf": Group(name: "San Francisco Crossfit", id: "sfcf", location: "San Francisco", workoutIDs: [])
 ]
-
-// Global database of users
-//let USER_STORE = [
-//    "nate" : User(id: "nate", name: "Nate", profileImgName: "nate", groupIDs: ["sfcf"]),
-//    "tony" : User(id: "tony", name: "Tony", profileImgName: "tony", groupIDs: ["sfcf"]),
-//    "carl" : User(id: "carl", name: "Carl", profileImgName: "carl", groupIDs: ["sfcf"]),
-//    "nick" : User(id: "nick", name: "Nick", profileImgName: "nick", groupIDs: ["sfcf"]),
-//    "joey" : User(id: "joey", name: "Joey", profileImgName: "joey", groupIDs: ["sfcf"])
-//]
-let USER_STORE = [String : User]()
-
-// TODO: This should be a proper singleton
-var LOGGED_IN_USER = USER_STORE["carl"]
-
-//func getFirebaseUsers() {
-//    // Get a reference to our posts
-//    var usersRef = FIREBASE_USERS_REF
-//    
-//    // Attach a closure to read the data at our posts reference
-//    usersRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-//        for child in snapshot.children.allObjects {
-//            if let snap = child as? FDataSnapshot {
-//                let id = snap.value["id"] as String
-//                let name = snap.value["name"] as String
-//                let imageUrl = snap.value["profileImgName"] as String
-//                println("id: \(id)")
-//                println("name: \(name)")
-//                println("imageUrl: \(imageUrl)")
-//            }
-//        }
-//        }, withCancelBlock: { error in
-//            println(error.description)
-//    })
-//}
-

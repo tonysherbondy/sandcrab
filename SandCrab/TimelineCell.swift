@@ -142,7 +142,7 @@ class TimelineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSo
             let cell : LeaderboardCell = tableView.dequeueReusableCellWithIdentifier("LeaderboardCell", forIndexPath: indexPath) as LeaderboardCell
             
             if let result = (friendsResults?[indexPath.row]) {
-                if let user = USER_STORE[result.userID] {
+                if let user = User.allUsers[result.userID] {
                     cell.buddyLabel.text = "\(user.fullName) - \(result.score.scoreDescription())"
                     cell.buddyProfileImageView.image = UIImage(named: user.profileImgName)
 

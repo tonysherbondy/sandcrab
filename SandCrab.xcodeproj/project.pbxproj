@@ -19,6 +19,7 @@
 		BB81082F19B5410100B362A5 /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB81082D19B5410100B362A5 /* ChatCell.xib */; };
 		BB81083219B598B900B362A5 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB81083019B598B900B362A5 /* LeaderboardCell.swift */; };
 		BB81083319B598B900B362A5 /* LeaderboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB81083119B598B900B362A5 /* LeaderboardCell.xib */; };
+		BB82267619CB98820060D12C /* CreateWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB82267519CB98820060D12C /* CreateWorkoutViewController.swift */; };
 		BBAFE9DA19C918E0007AA7AD /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFE9D919C918E0007AA7AD /* Models.swift */; };
 		BBAFE9DC19C92309007AA7AD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFE9DB19C92309007AA7AD /* LoginViewController.swift */; };
 		BBECBDA819C9FB1C00472361 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBECBDA719C9FB1C00472361 /* TimelineViewController.swift */; };
@@ -51,6 +52,7 @@
 		BB81082D19B5410100B362A5 /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
 		BB81083019B598B900B362A5 /* LeaderboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
 		BB81083119B598B900B362A5 /* LeaderboardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeaderboardCell.xib; sourceTree = "<group>"; };
+		BB82267519CB98820060D12C /* CreateWorkoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateWorkoutViewController.swift; sourceTree = "<group>"; };
 		BBAFE9D919C918E0007AA7AD /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		BBAFE9DB19C92309007AA7AD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BBECBDA719C9FB1C00472361 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				BB7350C019BA5BB40073650F /* TimelineCell.xib */,
 				BB81081119B52ADD00B362A5 /* ViewController.swift */,
 				BB81081319B52ADD00B362A5 /* Main.storyboard */,
+				BB82267519CB98820060D12C /* CreateWorkoutViewController.swift */,
 				BBAFE9DB19C92309007AA7AD /* LoginViewController.swift */,
 				BB81083019B598B900B362A5 /* LeaderboardCell.swift */,
 				BB81083119B598B900B362A5 /* LeaderboardCell.xib */,
@@ -293,6 +296,7 @@
 				BB81081219B52ADD00B362A5 /* ViewController.swift in Sources */,
 				BB81083219B598B900B362A5 /* LeaderboardCell.swift in Sources */,
 				BB81081019B52ADD00B362A5 /* AppDelegate.swift in Sources */,
+				BB82267619CB98820060D12C /* CreateWorkoutViewController.swift in Sources */,
 				BBAFE9DC19C92309007AA7AD /* LoginViewController.swift in Sources */,
 				BBECBDA819C9FB1C00472361 /* TimelineViewController.swift in Sources */,
 				BB81082E19B5410100B362A5 /* ChatCell.swift in Sources */,

@@ -17,8 +17,8 @@ class LoginViewController: UIViewController {
     // TODO: Only allow known users to log in
     @IBAction func onLogin(sender: AnyObject) {
         let username = loginTextField.text
-        if let user = USER_STORE[username] {
-            LOGGED_IN_USER = user
+        if let user = User.allUsers[username] {
+            User.loggedInUser = user
             performSegueWithIdentifier("login", sender: self)
         }
     }
