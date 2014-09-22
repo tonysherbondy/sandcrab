@@ -13,6 +13,17 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let currentUser = User.loggedInUser {
+            println("Welcome back : \(currentUser.username)")
+            
+            // need to put a delay on...since view controller can't segue
+            // until after viewDidLoad...
+            Tools.delay(0.1, { _ in
+                self.performSegueWithIdentifier("login", sender: self)
+            })
+        }
+        
     }
     // TODO: Only allow known users to log in
     @IBAction func onLogin(sender: AnyObject) {

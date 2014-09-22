@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01C1262919D09F4F00C4A728 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C1262819D09F4F00C4A728 /* User.swift */; };
+		01C1262E19D0A91C00C4A728 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C1262D19D0A91C00C4A728 /* SettingsViewController.swift */; };
+		01C1263119D0AF6300C4A728 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C1263019D0AF6300C4A728 /* Tools.swift */; };
 		7AFFC397AE51429FA16928FC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87785C5C908B48A4B47FC649 /* libPods.a */; };
 		BB7350C119BA5BB40073650F /* TimelineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7350BF19BA5BB40073650F /* TimelineCell.swift */; };
 		BB7350C219BA5BB40073650F /* TimelineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7350C019BA5BB40073650F /* TimelineCell.xib */; };
@@ -36,6 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01C1262819D09F4F00C4A728 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		01C1262D19D0A91C00C4A728 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		01C1263019D0AF6300C4A728 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		87785C5C908B48A4B47FC649 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB7350BF19BA5BB40073650F /* TimelineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineCell.swift; sourceTree = "<group>"; };
 		BB7350C019BA5BB40073650F /* TimelineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineCell.xib; sourceTree = "<group>"; };
@@ -79,6 +85,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01C1262A19D09F5400C4A728 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BBAFE9D919C918E0007AA7AD /* Models.swift */,
+				01C1262819D09F4F00C4A728 /* User.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		01C1262B19D09F5D00C4A728 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BB82267519CB98820060D12C /* CreateWorkoutViewController.swift */,
+				BBAFE9DB19C92309007AA7AD /* LoginViewController.swift */,
+				BBECBDA719C9FB1C00472361 /* TimelineViewController.swift */,
+				01C1262D19D0A91C00C4A728 /* SettingsViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		01C1262C19D09F6E00C4A728 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BB81083019B598B900B362A5 /* LeaderboardCell.swift */,
+				BB81083119B598B900B362A5 /* LeaderboardCell.xib */,
+				BB81082C19B5410100B362A5 /* ChatCell.swift */,
+				BB81082D19B5410100B362A5 /* ChatCell.xib */,
+				BB7350BF19BA5BB40073650F /* TimelineCell.swift */,
+				BB7350C019BA5BB40073650F /* TimelineCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		01C1262F19D0AF4F00C4A728 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				01C1263019D0AF6300C4A728 /* Tools.swift */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
 		12F1DD698B50484EA11702C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,19 +157,13 @@
 		BB81080C19B52ADD00B362A5 /* SandCrab */ = {
 			isa = PBXGroup;
 			children = (
-				BBECBDA719C9FB1C00472361 /* TimelineViewController.swift */,
+				01C1262F19D0AF4F00C4A728 /* Tools */,
+				01C1262C19D09F6E00C4A728 /* Views */,
+				01C1262B19D09F5D00C4A728 /* View Controllers */,
+				01C1262A19D09F5400C4A728 /* Models */,
 				BB81080F19B52ADD00B362A5 /* AppDelegate.swift */,
-				BBAFE9D919C918E0007AA7AD /* Models.swift */,
-				BB7350BF19BA5BB40073650F /* TimelineCell.swift */,
-				BB7350C019BA5BB40073650F /* TimelineCell.xib */,
 				BB81081119B52ADD00B362A5 /* ViewController.swift */,
 				BB81081319B52ADD00B362A5 /* Main.storyboard */,
-				BB82267519CB98820060D12C /* CreateWorkoutViewController.swift */,
-				BBAFE9DB19C92309007AA7AD /* LoginViewController.swift */,
-				BB81083019B598B900B362A5 /* LeaderboardCell.swift */,
-				BB81083119B598B900B362A5 /* LeaderboardCell.xib */,
-				BB81082C19B5410100B362A5 /* ChatCell.swift */,
-				BB81082D19B5410100B362A5 /* ChatCell.xib */,
 				BB81081619B52ADD00B362A5 /* Images.xcassets */,
 				BB81080D19B52ADD00B362A5 /* Supporting Files */,
 				BBECBDAA19CA067400472361 /* SandCrab-Bridging-Header.h */,
@@ -294,12 +335,15 @@
 			files = (
 				BB7350C119BA5BB40073650F /* TimelineCell.swift in Sources */,
 				BB81081219B52ADD00B362A5 /* ViewController.swift in Sources */,
+				01C1262E19D0A91C00C4A728 /* SettingsViewController.swift in Sources */,
+				01C1263119D0AF6300C4A728 /* Tools.swift in Sources */,
 				BB81083219B598B900B362A5 /* LeaderboardCell.swift in Sources */,
 				BB81081019B52ADD00B362A5 /* AppDelegate.swift in Sources */,
 				BB82267619CB98820060D12C /* CreateWorkoutViewController.swift in Sources */,
 				BBAFE9DC19C92309007AA7AD /* LoginViewController.swift in Sources */,
 				BBECBDA819C9FB1C00472361 /* TimelineViewController.swift in Sources */,
 				BB81082E19B5410100B362A5 /* ChatCell.swift in Sources */,
+				01C1262919D09F4F00C4A728 /* User.swift in Sources */,
 				BBAFE9DA19C918E0007AA7AD /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,6 +15,9 @@ class TimelineViewController: UIViewController, UICollectionViewDelegateFlowLayo
     var expandedRow : Int?
     let workouts : WorkoutList = WorkoutList()
     
+    @IBAction func onCloseButton(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     @IBAction func onAddWorkoutButton(sender: UIButton) {
         var workout : [String : AnyObject] = [
             "name" : "SFCF 12.09.2014",
@@ -27,17 +30,14 @@ class TimelineViewController: UIViewController, UICollectionViewDelegateFlowLayo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //User.observeUsers()
-        //User.saveFirebaseUser()
-        
-        
+
         self.workouts.observeUpdates({
             println("workouts updated")
             self.collectionView.reloadData()
         })
-//        Workout.saveFirebaseWorkout()
-
+        
+        self.addListeners()
+       
         // Do any additional setup after loading the view.
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
@@ -48,6 +48,20 @@ class TimelineViewController: UIViewController, UICollectionViewDelegateFlowLayo
         self.collectionView.collectionViewLayout = UICollectionViewFlowLayout()
 
     }
+    
+    func addListeners() {
+    NSNotificationCenter.defaultCenter().addObserverForName("UserDidLogoutNotification", object: nil, queue: nil) { _ in
+            // this should pop back to login screen
+            println("user logout notification")
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
+    
+    func removeListeners() {
+        // TODO: cleanup any listeners here...
+    }
+    
+    
     
     // MARK: - UICollectionViewDataSource
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:

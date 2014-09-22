@@ -16,6 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         // Override point for customization after application launch.
+        
+        /*println("testing nsuserdefaults")
+        var data = NSKeyedArchiver.archivedDataWithRootObject(["poo":"poo"])
+        NSUserDefaults.standardUserDefaults().setObject(data, forKey: "poo")
+        
+        // Retrieving the dictionary
+        if let outData = NSUserDefaults.standardUserDefaults().dataForKey("poo") {
+            println("found data! \(outData)")
+            var dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as [String:String]
+            println("dict: \(dict)")
+        }*/
+        
         return true
     }
 
