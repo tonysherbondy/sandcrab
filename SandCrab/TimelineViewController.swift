@@ -13,7 +13,7 @@ class TimelineViewController: UIViewController, UICollectionViewDelegateFlowLayo
     @IBOutlet weak var collectionView: UICollectionView!
     
     var expandedRow : Int?
-    let workouts = [Workout]()
+    let workouts : WorkoutList = WorkoutList()
     
     @IBAction func onAddWorkoutButton(sender: UIButton) {
         var workout : [String : AnyObject] = [
@@ -28,10 +28,14 @@ class TimelineViewController: UIViewController, UICollectionViewDelegateFlowLayo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        User.observeUsers()
+        //User.observeUsers()
         //User.saveFirebaseUser()
         
-        Workout.observeWorkouts()
+        
+        self.workouts.observeUpdates({
+            println("workouts updated")
+            self.collectionView.reloadData()
+        })
 //        Workout.saveFirebaseWorkout()
 
         // Do any additional setup after loading the view.
@@ -52,13 +56,14 @@ class TimelineViewController: UIViewController, UICollectionViewDelegateFlowLayo
         
         cell.delegate = self
         cell.tag = indexPath.row
-        cell.setWorkout(workouts[indexPath.row])
+        cell.setWorkout(workouts.list[indexPath.row])
         
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return workouts.count
+        println("workouts count \(workouts.list.count)")
+        return workouts.list.count
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {

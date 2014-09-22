@@ -11,7 +11,8 @@ import UIKit
 // Let's play with firebase
 
 // Create a reference to a Firebase location
-let FIREBASE_REF =  Firebase(url: "https://amber-inferno-424.firebaseio.com/")
+//let FIREBASE_REF =  Firebase(url: "https://amber-inferno-424.firebaseio.com/")
+let FIREBASE_REF =  Firebase(url: "https://boiling-fire-1252.firebaseio.com/")
 let FIREBASE_USERS_REF = FIREBASE_REF.childByAppendingPath("users")
 let FIREBASE_WORKOUT_REF = FIREBASE_REF.childByAppendingPath("workouts")
 
@@ -41,25 +42,36 @@ class User {
         if let groups = dictionary["groupIDs"] as? NSArray {
             groupIDs = groups as? [String]
         }
-        println("user = \(self.fullName), \(groupIDs!)")
+        println("user = \(self.fullName), \(groupIDs?)")
     }
     
     private struct Singleton {
-        static var instance = User()
+        static var instance : User? = nil
     }
     
-    class var loggedInUser : User {
+    class var loggedInUser : User? {
         get {
+            if let user = Singleton.instance {
+                println("We have a currentUser: \(user)")
+            } else {
+                println("Current user is nil...TODO:attempt load from persistent storage")
+            }
             return Singleton.instance
         }
         set {
+            println("Set currentUser to \(newValue)")
             Singleton.instance = newValue
         }
     }
     
     class var allUsers : [String : User] {
-        return [String : User]()
+        return [
+            "tony" : User(dictionary: ["id" : "tony-id", "username" : "tony", "fullName": "Tony Sherbondy", "profileImgUrl" : "tony"]),
+            "nick" : User(dictionary: ["id" : "nick-id", "username" : "nick", "fullName": "Nick Halper", "profileImgUrl" : "nick"]),
+            "joey" : User(dictionary: ["id" : "joey-id", "username" : "joey", "fullName": "Joey Hiller", "profileImgUrl" : "joey"])
+            ]
     }
+    
     
     class func saveFirebaseUser() {
         var userRef = FIREBASE_USERS_REF.childByAutoId()
@@ -140,6 +152,8 @@ struct ChatMessage {
     var userID : String
 }
 
+let kAllWorkoutNotificationUpdate = "NSNotificationCenterAllWorkoutUpdates"
+
 // Workout to perform
 class Workout {
     var id : String
@@ -151,6 +165,7 @@ class Workout {
     var scoreTemplate : WorkoutScoreType
     // Results for each athlete
     var athleteResults : [AthleteResult]
+    
     
     // Sort by workout, each workout result will need a type specifying how to sort it
     var sortedAthleteResults : [AthleteResult] {
@@ -165,7 +180,7 @@ class Workout {
     // Removes the logged in user from the list
     var sortedFriendsResults : [AthleteResult] {
         get {
-            let friendsResults = athleteResults.filter({ $0.userID != User.loggedInUser.id })
+            let friendsResults = athleteResults.filter({ $0.userID != User.loggedInUser!.id })
             if friendsResults.count == 0 {
                 return friendsResults
             }
@@ -194,7 +209,7 @@ class Workout {
         println("saved workout!")
     }
     
-    class func observeWorkouts() {
+    class func observeAllWorkouts() {
         FIREBASE_WORKOUT_REF.observeEventType(.Value, withBlock: { snapshot in
             println("workouts data: \(snapshot.value)")
             for data in snapshot.children.allObjects {
@@ -207,10 +222,50 @@ class Workout {
                     }
                 }
             }
+            println("Workout posting notification kWorkoutNotificationUpdate")
+            let nc = NSNotificationCenter.defaultCenter()
+            nc.postNotificationName(kAllWorkoutNotificationUpdate, object: nil, userInfo: nil)
+            
         })
     }
 
     
+    
+}
+
+
+class WorkoutList {
+    var list : [Workout] = []
+    
+    func observeUpdates(onUpdates:() -> Void) {
+        FIREBASE_WORKOUT_REF.observeEventType(.Value, withBlock: { snapshot in
+            println("workouts data: \(snapshot.value)")
+            var newList : [Workout] = []
+            for data in snapshot.children.allObjects {
+                if let snap = data as? FDataSnapshot {
+                    if var workoutDict = snap.value as? [String : AnyObject] {
+                        workoutDict["id"] = snap.name
+                        let workout = Workout(dictionary: workoutDict)
+                        
+                        println("workout retrieved: \(workout)")
+                        newList.append(workout)
+                    }
+                }
+            }
+            /*
+            // note: we could do a posts notification route rather than a callback
+            // but the idea here is that this method itself would be listening for global changes
+            // on workouts, and only posting a callback if it's own user list has changed for
+            // whatever filters we choose to apply
+            println("Workout posting notification kWorkoutNotificationUpdate")
+            let nc = NSNotificationCenter.defaultCenter()
+            nc.postNotificationName(kWorkoutNotificationUpdate, object: nil, userInfo: nil)
+            */
+            // now a quick hack to reverse the list so the newest workouts appear on top...
+            self.list = reverse(newList)
+            onUpdates()
+        })
+    }
     
 }
 
